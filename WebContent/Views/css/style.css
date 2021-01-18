@@ -92,4 +92,12 @@ box-sizing: border-box;
 	width: 850px;
 }
 
+.errors {
+	font-weight: bold;
+	color: #FF0000;
+	text-align: left;
+}
 
+.errors li{ 
+    list-style: none; 
+}

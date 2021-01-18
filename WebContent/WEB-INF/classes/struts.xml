@@ -4,16 +4,28 @@
    "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-   <constant name = "struts.devMode" value = "true" />
-   <constant name = "struts.custom.i18n.resources" value = "global_*" />
-   <package name = "helloworld" extends = "struts-default">
-   
-  
-   
-     <action name = "hello" 
-   class = "manageuser.action.LoginAction"
-   method = "execute">
-   <result name = "success" type = "redirect">ADM002.jsp</result>
-</action>
-   </package>
+	<constant name="struts.devMode" value="true" />
+	<package name="helloworld" extends="struts-default">
+		<default-action-ref name="paging" />
+
+		<action name="loginaction"
+			class="manageuser.action.LoginAction" method="execute">
+			<result name="success">./ADM002.jsp</result>
+			<result name="input">./ADM001.jsp</result>
+			<result name="error">Views/jsp/error.jsp</result>
+		</action>
+
+
+
+
+		<action name="Logout" class="manageuser.action.LogoutAction"
+			method="execute">
+			<result name="success">./ADM001.jsp</result>
+			<result name="error">Views/jsp/error.jsp</result>
+		</action>
+
+		<!-- <action name="student" class="manageuser.action.StudentAction" method="execute"> -->
+		<!-- <result name="success">Views/jsp/ADM002.jsp</result> -->
+		<!-- </action> -->
+	</package>
 </struts>
