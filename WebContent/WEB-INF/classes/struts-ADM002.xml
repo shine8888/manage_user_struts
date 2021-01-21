@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="ListUserAction" extends="struts-default">
+
+<!-- 		<interceptors> -->
+<!-- 			<interceptor class="manageuser.interceptors.LoginInterceptor" -->
+<!-- 				name="loginInterceptor" /> -->
+<!-- 			<interceptor-stack name="loginStack"> -->
+<!-- 				<interceptor-ref name="loginInterceptor" /> -->
+<!-- 				<interceptor-ref name="defaultStack" /> -->
+<!-- 			</interceptor-stack> -->
+<!-- 		</interceptors> -->
+		
+		<action name="listUserAction_*" class="manageuser.action.ListUserAction"
+			method="execute">
+<!-- 			<interceptor-ref name="loginInterceptor" /> -->
+
+			<result name="success">Views/jsp/ADM002.jsp</result>
+			<result name="error">/Views/jsp/Footer.jsp</result>
+			<result name="login">/Views/jsp/ADM001.jsp</result>
+		</action>
+	</package>
+</struts>

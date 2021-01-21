@@ -15,7 +15,7 @@
 		<div>
 			<table>
 				<tr>
-					<td width="80%"><img src="../images/logo-manager-user.gif"
+					<td width="80%"><img src="Views/images/logo-manager-user.gif"
 						alt="Luvina" />
 					<td>
 					<td align="left"><s:a action="Logout">ログアウト</s:a> &nbsp; <a

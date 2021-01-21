@@ -2,7 +2,11 @@ package manageuser.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import manageuser.dao.impl.TblUserDaoImpl;
+import manageuser.common.Common;
+import manageuser.constant.Constant;
+import manageuser.dao.TblUserDao;
+import manageuser.logics.TblUserLogic;
+
 
 public class LoginAction extends ActionSupport {
 
@@ -13,33 +17,32 @@ public class LoginAction extends ActionSupport {
 	private String user;
 	private String password;
 	private String name;
-	private TblUserDaoImpl tbl = new TblUserDaoImpl();
+	Common common = new Common();
+	private TblUserLogic tbl = new TblUserLogic();
 	
-	public void validate() {
-	      if (user == null || user.trim().equals("")) {
-	         addActionError("「画面項目名」を入力してください");
-	         System.out.println(122345);
-	      }
-	      
-	      if (password == null || password.trim().equals("")) {
-	    	  addActionError("画面項目名」を入力してください");
-		      }
-	   }
 
-	public String execute() {
-		String ret = ERROR;
-		try {
-			String check = tbl.getUserLogin(user, password);
-			if (check.equals(user)) {
-				return ret = "success";
-			} else {
-				addActionError("「アカウント名」または「パスワード」は不正です。");
-				return ret="input";
-			}
-		} catch (Exception e) {
+
+	public void validate() {
+		if (null == user || "".equals(user.trim())) {
+			addActionError(getText(Constant.ER001_LOGIN_NAME));
+		}
+		if (null == password || "".equals(password.trim())) {
+			addActionError(getText(Constant.ER001_PASSWORD));
+			System.out.println("false");
 		}
 
-		return ret;
+	}
+	
+	public String execute() throws Exception {
+		if (!tbl.checkLogin(user, password)) {
+			addActionError(getText(Constant.ER016_LOGIN_NAME));
+			System.out.println("false");
+			return LOGIN;
+		} else {
+			common.setSession(Constant.LOGIN_NAME, user);
+			System.out.println(user);
+			return SUCCESS;
+		}
 	}
 
 	public String getName() {
