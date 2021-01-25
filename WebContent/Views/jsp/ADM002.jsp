@@ -55,6 +55,7 @@
 		<!-- End vung dieu kien tim kiem -->
 	</form>
 	<!-- Begin vung hien thi danh sach user -->
+	<s:if test="#attr.listUser.size() !=0">
 	<table class="tbl_list" border="1" cellpadding="4" cellspacing="0"
 		width="80%">
 		<s:url action="listUserAction" id="urlSort" var="sort">
@@ -65,10 +66,12 @@
 			<th align="left">氏名 <s:if
 					test="sortValue == 'DESC' && sortType == 'full_name'">
 					<a
-						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${currentPage}&sortType=full_name&sortValue=ASC">△▼</a>
+						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${currentPage}&sortType=full_name&sortValue=ASC">△▼</a>
 				</s:if> <s:else>
 					<a
-						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${currentPage}&sortType=full_name&sortValue=DESC">▲▽</a>
+						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${currentPage}&sortType=full_name&sortValue=DESC">▲▽</a>
 				</s:else>
 			</th>
 			<th align="left">生年月日</th>
@@ -78,24 +81,31 @@
 			<th align="left">日本語能力 <s:if
 					test="sortValue == 'DESC' && sortType == 'code_level'">
 					<a
-						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${currentPage}&sortType=code_level&sortValue=ASC">△▼</a>
-				</s:if> <s:else>
+						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${currentPage}&sortType=code_level&sortValue=ASC">△▼</a>
+				</s:if> 
+				<s:else>
 					<a
-						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${currentPage}&sortType=code_level&sortValue=DESC">▲▽</a>
+						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${currentPage}&sortType=code_level&sortValue=DESC">▲▽</a>
 				</s:else>
 			</th>
 			<th align="left">失効日 <s:if
 					test="sortValue == 'DESC' && sortType == 'end_date'">
 					<a
-						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${currentPage}&sortType=end_date&sortValue=ASC">△▼</a>
-				</s:if> <s:else>
+						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${currentPage}&sortType=end_date&sortValue=ASC">△▼</a>
+				</s:if> 
+				<s:else>
 					<a
-						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${currentPage}&sortType=end_date&sortValue=DESC">▲▽</a>
+						href="<s:property value="#sort"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${currentPage}&sortType=end_date&sortValue=DESC">▲▽</a>
 				</s:else>
 			</th>
 			<th align="left">点数</th>
 		</tr>
-
+		
+		
 		<s:iterator value="#attr.listUser" var="user">
 			<tr>
 				<td align="right"><a href="ADM005.html"><s:property
@@ -110,39 +120,45 @@
 				<td align="right"><s:property value="#user.total" /></td>
 			</tr>
 		</s:iterator>
-
 	</table>
+	</s:if> 
+	<s:else>
+		<p>No users found</p>
+		</s:else>
 	<!-- End vung hien thi danh sach user -->
 
 	<!-- Begin vung paging -->
 	<table>
-		<s:url action="listUserAction" id="urlPaging" var="ctPage">
+		<s:url action="listUserAction" id="urlPaging" var="ctPage" forceAddSchemeHostAndPort="true" includeParams="all">
 			<s:param name="action">paging</s:param>
-		</s:url>
-		<tr>
-			<td class="lbl_paging"><s:if test="PRE != 0">
-					<a
-						href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${PRE}&sortType=${sortType}&sortValue=${sortValue}">
-						<< </a>&nbsp;
+			</s:url>
+			<tr>
+				<td class="lbl_paging"><s:if test="PRE != 0">
+						<a
+							href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${PRE}&sortType=${sortType}&sortValue=${sortValue}">
+							<< </a>&nbsp; 
 					</s:if> <s:iterator value="#attr.listPaging" var="page">
-					<s:param name="currentPage">
-						<s:property value="#page" />
-					</s:param>
-					<a
-						href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${page}&sortType=${sortType}&sortValue=${sortValue}">
-						<s:property value="#page" />
-					</a>&nbsp;
+						<s:param name="currentPage">
+							<s:property value="#page" />
+						</s:param>
+						<a
+							href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${page}&sortType=${sortType}&sortValue=${sortValue}">
+							<s:property value="#page" />
+						</a>&nbsp;
 				</s:iterator> <s:if test="NEXT != 0">
-					<a
-						href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}&currentPage=${NEXT}&sortType=${sortType}&sortValue=${sortValue}">
-						>> </a>&nbsp;
+						<a
+							href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}
+						&currentPage=${NEXT}&sortType=${sortType}&sortValue=${sortValue}">
+							>> </a>&nbsp;
 					</s:if></td>
-		</tr>
-	</table>
-	<!-- End vung paging -->
+			</tr>
+				</table>
+			<!-- End vung paging -->
 
-	<!-- Begin vung footer -->
-	<jsp:include page="Footer.jsp"></jsp:include>
-	<!-- End vung footer -->
+			<!-- Begin vung footer -->
+			<jsp:include page="Footer.jsp"></jsp:include>
+			<!-- End vung footer -->
 </body>
 </html>

@@ -27,7 +27,6 @@ public class TblUserDao extends BaseDao{
 	 */
 	public String getUserLogin(String loginName, String password) throws SQLException, ClassNotFoundException{
 		String check ="";
-		System.out.println("trong tbl");
 		try {
 			openConnect();
 			StringBuilder sql = new StringBuilder();
@@ -76,7 +75,8 @@ public class TblUserDao extends BaseDao{
 			if (conn != null) {
 				StringBuilder sql = new StringBuilder();
 				sql.append(
-						"SELECT u.user_id, u.full_name, u.birthday, g.group_name, u.email, u.tel, mj.name_level, du.end_date, du.total ");
+						"SELECT u.user_id, u.full_name, u.birthday, g.group_name, "
+						+ "u.email, u.tel, mj.name_level, du.end_date, du.total ");
 				sql.append("FROM tbl_user u ");
 				sql.append("INNER JOIN mst_group g ");
 				sql.append("ON g.group_id = u.group_id ");
@@ -86,10 +86,8 @@ public class TblUserDao extends BaseDao{
 				sql.append("ON mj.code_level = du.code_level ");
 				sql.append("where u.full_name like ? ");
 				if (groupId != 0) {
-					// nếu != 0 thì thêm câu lệnh dưới
 					sql.append("AND g.group_id = ? ");
 				}
-				// Kiểm tra giá trị truyền vào của sortType
 				switch (sortType) {
 				// TH sort theo full_name
 				case Constant.SORT_FULLNAME:
@@ -109,11 +107,6 @@ public class TblUserDao extends BaseDao{
 					sql.append(", u.full_name ").append(sortByFullName);
 					sql.append(", mj.name_level ").append(sortByCodeLevel);
 					break;
-				default:
-					sql.append("ORDER BY u.full_name ASC ");
-					sql.append(", mj.name_level ASC");
-					sql.append(", du.end_date DESC ");
-					break;
 				}
 
 				sql.append("\n LIMIT ? ");
@@ -130,18 +123,19 @@ public class TblUserDao extends BaseDao{
 				// Thực thi câu lệnh
 				ResultSet rs = pre.executeQuery();
 				while (rs.next()) {
+					int count = 1;
 					// Tạo đối tượng
 					UserInforBean userInfo = new UserInforBean();
 					// set các giá trị vào đối tượng
-					userInfo.setUserId(rs.getInt(1));
-					userInfo.setFullName(rs.getString(2));
-					userInfo.setBirthday(rs.getString(3));
-					userInfo.setGroupName(rs.getString(4));
-					userInfo.setEmail(rs.getString(5));
-					userInfo.setTel(rs.getString(6));
-					userInfo.setNameLevel(rs.getString(7));
-					userInfo.setEndDate(rs.getString(8));
-					userInfo.setTotal(rs.getString(9));
+					userInfo.setUserId(rs.getInt(count++));
+					userInfo.setFullName(rs.getString(count++));
+					userInfo.setBirthday(rs.getString(count++));
+					userInfo.setGroupName(rs.getString(count++));
+					userInfo.setEmail(rs.getString(count++));
+					userInfo.setTel(rs.getString(count++));
+					userInfo.setNameLevel(rs.getString(count++));
+					userInfo.setEndDate(rs.getString(count++));
+					userInfo.setTotal(rs.getString(count++));
 					listUser.add(userInfo);
 				}
 			}

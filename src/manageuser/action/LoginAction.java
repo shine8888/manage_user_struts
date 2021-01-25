@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import manageuser.common.Common;
 import manageuser.constant.Constant;
-import manageuser.dao.TblUserDao;
 import manageuser.logics.TblUserLogic;
 
 
@@ -28,7 +27,6 @@ public class LoginAction extends ActionSupport {
 		}
 		if (null == password || "".equals(password.trim())) {
 			addActionError(getText(Constant.ER001_PASSWORD));
-			System.out.println("false");
 		}
 
 	}
@@ -36,11 +34,9 @@ public class LoginAction extends ActionSupport {
 	public String execute() throws Exception {
 		if (!tbl.checkLogin(user, password)) {
 			addActionError(getText(Constant.ER016_LOGIN_NAME));
-			System.out.println("false");
 			return LOGIN;
 		} else {
 			common.setSession(Constant.LOGIN_NAME, user);
-			System.out.println(user);
 			return SUCCESS;
 		}
 	}

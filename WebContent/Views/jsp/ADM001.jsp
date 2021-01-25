@@ -8,9 +8,10 @@
 <link href="views/css/style.css" rel="stylesheet" type="text/css" />
 <title><s:text name="ADM001.title" /></title>
 </head>
-<body align="center">
-	<form action="loginaction" method="post">
+<body>
 		<center>
+	<form action="loginaction" method="post">
+
 			<table class="tbl_input" cellpadding="4" cellspacing="0"
 				width="400px">
 				<tr>
@@ -44,7 +45,8 @@
 						value="<s:property value="getText('ADM001.login')" />" /></td>
 				</tr>
 			</table>
-		</center>
+	
 	</form>
+		</center>
 </body>
 </html>

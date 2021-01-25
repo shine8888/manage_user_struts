@@ -7,6 +7,8 @@ package manageuser.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,13 +30,18 @@ public class ListUserAction extends ActionSupport {
 	private static final long serialVersionUID = 6167313450665361319L;
 	private String action, sortType, sortValue;
 	private String fullName;
-	private int PRE, NEXT;
+	private int pre, next;
 	private int groupId, currentPage;
-
+	private String urlSort, urlPaging;
 	Common common = new Common();
 
+	private HttpServletRequest request = ServletActionContext.getRequest();
+	String url = "";
+	StringBuilder requestURL = new StringBuilder(request.getRequestURL().toString());
+	String queryString = request.getQueryString();
+	
 	public String execute() throws Exception {
-		System.out.println("Quang");
+
 		TblUserLogic tblUserLogic = new TblUserLogic();
 		MstGroupLogic groupLogic = new MstGroupLogic();
 		try {
@@ -73,11 +80,11 @@ public class ListUserAction extends ActionSupport {
 				if (Constant.SORT_FULLNAME.equals(sortType)) {
 					sortByFullName = sortValue;
 				}
-				if (Constant.SORT_FULLNAME.equals(sortType)) {
-					sortByFullName = sortValue;
+				if (Constant.SORT_CODELEVEL.equals(sortType)) {
+					sortByCodeLevel = sortValue;
 				}
-				if (Constant.SORT_FULLNAME.equals(sortType)) {
-					sortByFullName = sortValue;
+				if (Constant.SORT_ENDDATE.equals(sortType)) {
+					sortByEndDate = sortValue;
 				}
 				break;
 			case Constant.DEFAULT:
@@ -96,10 +103,10 @@ public class ListUserAction extends ActionSupport {
 				listPaging = tblUserLogic.getListPaging(totalRecord, limit, currentPage);
 				if (listPaging != null) {
 					if (currentPage > limitPage) {
-						PRE = listPaging.get(0) - limitPage;
+						pre = listPaging.get(0) - limitPage;
 					}
 					if (listPaging.get(listPaging.size() - 1) < totalPage) {
-						NEXT = listPaging.get(0) + limitPage;
+						next = listPaging.get(0) + limitPage;
 					}
 				}
 			}
@@ -112,9 +119,6 @@ public class ListUserAction extends ActionSupport {
 			common.setSession(Constant.FULL_NAME, fullName);
 			common.setSession(Constant.CURRENT_PAGE, String.valueOf(currentPage));
 		} catch (Exception e) {
-			String methodName = new Object() {
-			}.getClass().getEnclosingMethod().getName();
-			System.out.println(this.getClass().getName() + "." + methodName + ": " + e.getMessage());
 			return ERROR;
 		}
 		return SUCCESS;
@@ -153,19 +157,19 @@ public class ListUserAction extends ActionSupport {
 	}
 
 	public int getPRE() {
-		return PRE;
+		return pre;
 	}
 
 	public void setPRE(int pRE) {
-		PRE = pRE;
+		pre = pRE;
 	}
 
 	public int getNEXT() {
-		return NEXT;
+		return next;
 	}
 
-	public void setNEXT(int nEXT) {
-		NEXT = nEXT;
+	public void setNEXT(int next) {
+		next = next;
 	}
 
 	public String getSortType() {
@@ -182,5 +186,21 @@ public class ListUserAction extends ActionSupport {
 
 	public void setSortValue(String sortValue) {
 		this.sortValue = sortValue;
+	}
+
+	public String getUrlSort() {
+		return urlSort;
+	}
+
+	public void setUrlSort(String urlSort) {
+		this.urlSort = urlSort;
+	}
+
+	public String getUrlPaging() {
+		return urlPaging;
+	}
+
+	public void setUrlPaging(String urlPaging) {
+		this.urlPaging = urlPaging;
 	}
 }
