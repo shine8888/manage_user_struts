@@ -3,6 +3,8 @@
  */
 package manageuser.constant;
 
+import manageuser.common.Common;
+
 /**
  * @author kieuvanquang
  *
@@ -118,4 +120,10 @@ public class Constant {
 		public static final Integer MAX_PASSWORD = 15;
 		public static final Integer MIN_PASSWORD = 5;
 		public static final Integer MAX_TOTAL = 11;
+
+		public static final int YEAR_BEGINING = 2000;
+
+		public static final int YEAR_END = Common.getYearNow();
+
+		public static final int YEAR_ENDDATE = Common.getYearNow()+1;
 	}

@@ -35,8 +35,6 @@ public class MstGroupDao extends BaseDao{
 				}
 			}
 		} catch (SQLException e) {
-			String method= new Object() {}.getClass().getEnclosingMethod().getName();
-			System.out.println(this.getClass().getName() + "." + method + ": " + e.getMessage());
 			throw e;
 		} finally {
 			closeConnect();

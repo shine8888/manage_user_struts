@@ -115,7 +115,7 @@ public class ListUserAction extends ActionSupport {
 			ServletActionContext.getRequest().setAttribute(Constant.LIST_GROUP, listGroup);
 			ServletActionContext.getRequest().setAttribute(Constant.LIST_PAGING, listPaging);
 
-			common.setSession(Constant.GROUP_ID, String.valueOf(groupId));
+			common.setSession(Constant.GROUP_ID, listGroup);
 			common.setSession(Constant.FULL_NAME, fullName);
 			common.setSession(Constant.CURRENT_PAGE, String.valueOf(currentPage));
 		} catch (Exception e) {
@@ -156,20 +156,20 @@ public class ListUserAction extends ActionSupport {
 		this.currentPage = currentPage;
 	}
 
-	public int getPRE() {
+	public int getPre() {
 		return pre;
 	}
 
-	public void setPRE(int pRE) {
-		pre = pRE;
+	public void setPre(int pRE) {
+		this.pre = pRE;
 	}
 
-	public int getNEXT() {
+	public int getNext() {
 		return next;
 	}
 
-	public void setNEXT(int next) {
-		next = next;
+	public void setNext(int next) {
+		this.next = next;
 	}
 
 	public String getSortType() {

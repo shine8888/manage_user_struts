@@ -16,4 +16,6 @@ public class MstGroupLogic {
 		listMstGroup = groupDao.getAllMstGroup();
 		return listMstGroup;
 	}
+	
+	
 }

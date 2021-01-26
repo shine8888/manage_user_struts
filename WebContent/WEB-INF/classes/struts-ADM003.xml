@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="AddUserAction" extends="application-default" namespace="">
+
+			<action name="AddUser" class="manageuser.action.AddUserAction"
+			method="execute">
+
+			<result name="success" type="redirect">Views/jsp/ADM003.jsp</result>
+		</action>
+		
+		<action name="Logout" class="manageuser.action.LogoutAction"
+			method="execute">
+			<result name="success">/Views/jsp/ADM001.jsp</result>
+		</action>
+		
+	</package>
+</struts>

@@ -7,6 +7,9 @@ package manageuser.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import manageuser.common.Common;
+import manageuser.constant.Constant;
+
 
 /**
  * Class LogoutController dùng để xử lý việc đăng xuất khỏi hệ thống
@@ -18,8 +21,9 @@ public class LogoutAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	@Override
 	public String execute() throws Exception {
+		Common common = new Common();
+		common.destroySession(Constant.LOGIN_NAME);
 		return SUCCESS;
 	}
-	
 
 }

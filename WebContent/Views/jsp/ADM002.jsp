@@ -45,8 +45,8 @@
 							<td align="left"><s:hidden name="action" value="search"
 									theme="simple" /> <s:submit class="btn" type="submit"
 									name="action:listUserAction" key="ADM002.search" theme="simple" />
-								<input class="btn" type="button"
-								value="<s:text name="ADM002.add" />" /></td>
+								 <s:a action="AddUser"><input class="btn" type="button"
+								value="<s:text name="ADM002.add" />"/></s:a></td>
 						</tr>
 					</table>
 				</td>
@@ -133,10 +133,10 @@
 			<s:param name="action">paging</s:param>
 			</s:url>
 			<tr>
-				<td class="lbl_paging"><s:if test="PRE != 0">
+				<td class="lbl_paging"><s:if test="pre != 0">
 						<a
 							href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}
-						&currentPage=${PRE}&sortType=${sortType}&sortValue=${sortValue}">
+						&currentPage=${pre}&sortType=${sortType}&sortValue=${sortValue}">
 							<< </a>&nbsp; 
 					</s:if> <s:iterator value="#attr.listPaging" var="page">
 						<s:param name="currentPage">
@@ -147,10 +147,10 @@
 						&currentPage=${page}&sortType=${sortType}&sortValue=${sortValue}">
 							<s:property value="#page" />
 						</a>&nbsp;
-				</s:iterator> <s:if test="NEXT != 0">
+				</s:iterator> <s:if test="next != 0">
 						<a
 							href="<s:property value="#ctPage"/>&fullName=${fullName}&groupId=${groupId}
-						&currentPage=${NEXT}&sortType=${sortType}&sortValue=${sortValue}">
+						&currentPage=${next}&sortType=${sortType}&sortValue=${sortValue}">
 							>> </a>&nbsp;
 					</s:if></td>
 			</tr>

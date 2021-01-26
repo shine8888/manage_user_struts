@@ -5,16 +5,25 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources"
-		value="global properties.database properties.ADM001 properties.ADM002 properties.config properties.error properties.message" />
+		value="global properties.database properties.ADM001 properties.ADM002 properties.ADM003 properties.config properties.error properties.message" />
 
 	<include file="struts-ADM001.xml"></include>
 	<include file="struts-ADM002.xml"></include>
-
+	<include file="struts-ADM003.xml"></include>
+	
 	<package name="application-default" namespace=""
 		extends="struts-default" abstract="true">
+		
+			<interceptors>
+			<interceptor class="manageuser.interceptors.LoginInterceptor"
+				name="loginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
 
-
-
+	<default-interceptor-ref name="loginStack" />
 	</package>
 
 </struts>
