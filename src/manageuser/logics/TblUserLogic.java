@@ -72,4 +72,40 @@ public class TblUserLogic extends ActionSupport{
 		}
 		return listPaging;
 	}
+	
+	public boolean checkExistLoginName(String loginName, int id) throws ClassNotFoundException, SQLException {
+		// Khởi tạo biến check
+		boolean check = false;
+		// Khởi tạo đối tượng TblUserDao
+		TblUserDao userDao = new TblUserDao();
+		// Gán lại giá trị cho count
+		TblUserBean user = userDao.getTblUserByLoginName(loginName, id);
+		// Kiểm tra xem user có tồn tại hay không
+		if (user != null) {
+			// Trả về giá trị true
+			return check = true;
+		}
+		// Trả về giá trị cho phương thức
+		return check;
+	}
+
+	/**
+	 * @see manageuser.logics.TblUserLogic#checkExistEmail(java.lang.String, int)
+	 * 
+	 */
+	public boolean checkExistEmail(String email, int id) throws ClassNotFoundException, SQLException {
+		// Khởi tạo biến check
+		boolean check = false;
+		// Khởi tạo đối tượng TblUserdao
+		TblUserDao userDao = new TblUserDao();
+		// Gán giá trị cho count
+		TblUserBean user = userDao.getExistEmail(email, id);
+		// Kiểm tra điều kiện nếu count khác 0
+		if (user != null) {
+			// Trả về giá trị true
+			return check = true;
+		}
+		// Trả về giá trị cho phương thức
+		return check;
+	}
 }

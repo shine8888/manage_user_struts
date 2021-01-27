@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import manageuser.beans.TblUserBean;
 import manageuser.beans.UserInforBean;
 import manageuser.constant.Constant;
 
@@ -194,4 +195,96 @@ public class TblUserDao extends BaseDao{
 		}
 		return total;
 	}
+	
+	@SuppressWarnings("finally")
+	public TblUserBean getExistEmail(String email, int id) throws ClassNotFoundException, SQLException {
+		// Khởi tạo total
+		TblUserBean user = null;
+		// Mở try
+		try {
+			// Mở kết nối DB
+			openConnect();
+			// Kiểm tra xem kết nối có tồn tại hay không
+			if (conn != null) {
+				// Khởi tạo câu truy vấn sql
+				StringBuilder sql = new StringBuilder("");
+				sql.append("Select u.email from tbl_user u ");
+				sql.append("Where u.email = ? ");
+				if (id != 0) {
+					sql.append("and u.user_id = ? ;");
+				}
+				// Khởi tạo lệnh PrepareStatement
+				PreparedStatement pre = conn.prepareStatement(sql.toString());
+				// truyền vào giá trị cho lệnh preparestatement
+				int index = 1;
+				pre.setString(index++, email);
+				if (id != 0) {
+					pre.setInt(index++, id);
+				}
+				// Khởi tạo resultset để lấy kết quả từ câu truy vấn
+				ResultSet rs = pre.executeQuery();
+				while (rs.next()) {
+					user = new TblUserBean();
+					user.setEmail(rs.getString("email"));
+				}
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// Ném lỗi đi cho phương thức khác gọi đến nhận biết
+			throw e;
+		} finally {
+			// Đóng kết nối DB
+			closeConnect();
+			// Trả về giá trị cho phương thức
+			return user;
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public TblUserBean getTblUserByLoginName(String loginName, int id) throws ClassNotFoundException, SQLException {
+		// Khởi tạo total
+		TblUserBean user = null;
+		// Mở try
+		try {
+			// Mở kết nối DB
+			openConnect();
+			// Kiểm tra xem kết nối có tồn tại hay không
+			if (conn != null) {
+				// Khởi tạo câu truy vấn sql
+				StringBuilder sql = new StringBuilder("");
+				sql.append("Select  u.login_name, u.user_id from tbl_user u ");
+				sql.append("Where u.login_name = ? ");
+				// Kiểm tra điều kiện xem id có tồn tại hay không
+				if (id > 0) {
+					sql.append("And u.user_id = ?;");
+				}
+				// Khởi tạo lệnh PrepareStatement
+				PreparedStatement pre = conn.prepareStatement(sql.toString());
+				// truyền vào giá trị cho lệnh preparestatement
+				int index = 1;
+				pre.setString(index++, loginName);
+				// Kiểm tra điều kiện khi id tồn tại thì thêm giá trị vào để thực thi
+				// sql
+				if (id > 0) {
+					pre.setInt(index++, id);
+				}
+				// Khởi tạo resultset để lấy kết quả từ câu truy vấn
+				ResultSet rs = pre.executeQuery();
+				// Khởi tạo đối tượng user
+				while (rs.next()) {
+					user = new TblUserBean();
+					user.setLoginName(rs.getString("login_name"));
+					user.setUserId(rs.getInt("user_id"));
+				}
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// Ném lỗi đi cho phương thức khác gọi đến nhận biết
+			throw e;
+		} finally {
+			// Đóng kết nối DB
+			closeConnect();
+			// Trả về giá trị cho phương thức
+			return user;
+		}
+	}
+
 }

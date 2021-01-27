@@ -21,4 +21,6 @@ public class MstJapanLogic {
 		}
 		return listJapan;
 	}
+	
+	
 }

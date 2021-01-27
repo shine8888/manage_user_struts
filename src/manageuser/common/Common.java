@@ -13,14 +13,11 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionContext;
 
-import manageuser.beans.MstGroupBean;
 import manageuser.beans.MstJapanBean;
 import manageuser.constant.Constant;
-import manageuser.logics.MstGroupLogic;
 import manageuser.logics.MstJapanLogic;
 
 public class Common implements SessionAware{
-	static Common common = new Common();
 	public SessionMap<String, Object> session;
 	public Map<String, Object> sessionMap = ActionContext.getContext().getSession();
 	
@@ -132,9 +129,8 @@ public class Common implements SessionAware{
 		return listDateNow;
 	}
 	
-	public static void setDataLogic() throws ClassNotFoundException, SQLException {
+	public void setDataLogic() throws ClassNotFoundException, SQLException {
 		// Khởi tạo các đối tượng mstGroup, mstJapan
-		MstGroupLogic mstGroup = new MstGroupLogic();
 		MstJapanLogic mstJapan = new MstJapanLogic();
 
 		// Khởi tạo các listMstGroup, listMstGroupName
@@ -147,13 +143,15 @@ public class Common implements SessionAware{
 		ArrayList<Integer> listYear = (ArrayList<Integer>) Common.getListYear(Constant.YEAR_BEGINING, Constant.YEAR_END);
 		ArrayList<Integer> listMonth = (ArrayList<Integer>) Common.getListMonth();
 		ArrayList<Integer> listDay = (ArrayList<Integer>) Common.getListDay();
+		List<Integer> listDateNow = getDateNow();
 
 		// Gán các list lên request
-		common.setSession("year", listYear);
-		common.setSession("listMstJapan", listMstJapan);
-		common.setSession("listYear", listYearEndDate);
-		common.setSession("listMonth", listMonth);
-		common.setSession("listDay", listDay);
+		this.setSession("year", listYear);
+		this.setSession("listMstJapan", listMstJapan);
+		this.setSession("listYear", listYearEndDate);
+		this.setSession("listMonth", listMonth);
+		this.setSession("listDay", listDay);
+		this.setSession("datenow", listDateNow);
 
 	}
 	

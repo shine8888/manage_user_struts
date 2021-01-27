@@ -10,6 +10,7 @@
 	<include file="struts-ADM001.xml"></include>
 	<include file="struts-ADM002.xml"></include>
 	<include file="struts-ADM003.xml"></include>
+	<include file="struts-ValidateUser.xml"></include>
 	
 	<package name="application-default" namespace=""
 		extends="struts-default" abstract="true">

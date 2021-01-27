@@ -56,48 +56,11 @@ public class Constant {
 		public static final String FULL_NAME = "fullName";
 		
 		
-		// use code message
-		public static final String MSG001 = "MSG001";
-		public static final String MSG002 = "MSG002";
-		public static final String MSG003 = "MSG003";
-		public static final String MSG005 = "MSG005";
 
-//		// Tổng hợp các mã lỗi
-//		public static final String ER0013 = "ER013";
-//		public static final String ER014 = "ER014";
-//		public static final String ER015 = "ER015";
-//		public static final String ER020 = "ER020";
-
-		// Mã lỗi theo từng hạng mục
-		public static final String ER001_LOGIN_NAME = "ER001_LOGIN_NAME";
-		public static final String ER001_PASSWORD = "ER001_PASSWORD";
-		public static final String ER016_LOGIN_NAME = "ER016_LOGIN_NAME";
-		public static final String ER019_LOGIN_NAME = "ER019_LOGIN_NAME";
-		public static final String ER007_LOGIN_NAME = "ER007_LOGIN_NAME";
-		public static final String ER003_LOGIN_NAME = "ER003_LOGIN_NAME";
-
-		public static final String ER002_GROUP_NAME = "ER002_GROUP_NAME";
-		public static final String ER004_GROUP_NAME = "ER004_GROUP_NAME";
-
-		public static final String ER001_FULL_NAME = "ER001_FULL_NAME";
-		public static final String ER006_FULL_NAME = "ER006_FULL_NAME";
-
-		public static final String ER009_FULL_NAME_KANA = "ER009_FULL_NAME_KANA";
-		public static final String ER006_FULL_NAME_KANA = "ER006_FULL_NAME_KANA";
+	
 
 		public static final String ER011_BIRTHDAY = "ER011_BIRTHDAY";
 
-		public static final String ER001_EMAIL = "ER001_EMAIL";
-		public static final String ER006_EMAIL = "ER006_EMAIL";
-		public static final String ER005_EMAIL = "ER005_EMAIL";
-		public static final String ER003_EMAIL = "ER003_EMAIL";
-
-		public static final String ER001_TEL = "ER001_TEL";
-		public static final String ER006_TEL = "ER006_TEL";
-		public static final String ER005_TEL = "ER005_TEL";
-
-		public static final String ER008_PASSWORD = "ER008_PASSWORD";
-		public static final String ER007_PASSWORD = "ER007_PASSWORD";
 
 		public static final String ER017_PASSWORD_CONFIRM = "ER017_PASSWORD_CONFIRM";
 
@@ -120,10 +83,70 @@ public class Constant {
 		public static final Integer MAX_PASSWORD = 15;
 		public static final Integer MIN_PASSWORD = 5;
 		public static final Integer MAX_TOTAL = 11;
+		
+		// Các hằng lưu giá trị cho các mã lỗi
+		public static final String ER001_LOGIN_NAME = "ER001_LOGIN_NAME";
+		public static final String ER007_LOGIN_NAME = "ER007_LOGIN_NAME";
+		public static final String ER019_LOGIN_NAME = "ER019_LOGIN_NAME";
+		public static final String ER003_LOGIN_NAME = "ER003_LOGIN_NAME";
+		public static final String ER016_LOGIN_NAME = "ER016_LOGIN_NAME";
+		
+		public static final String ER002_GROUP_NAME = "ER002_GROUP_NAME";
+		public static final String ER004_GROUP_NAME = "ER004_GROUP_NAME";
+		
+		public static final String ER001_FULL_NAME = "ER001_FULL_NAME";
+		public static final String ER006_FULL_NAME = "ER006_FULL_NAME";
+		public static final String ER001_FULL_NAME_KANA = "ER001_FULL_NAME_KANA";
+		public static final String ER009_FULL_NAME_KANA = "ER009_FULL_NAME_KANA";
+		public static final String ER006_FULL_NAME_KANA = "ER006_FULL_NAME_KANA";
+		
+		public static final String ER001_BIRTH_DAY = "ER001_BIRTH_DAY";
+		public static final String ER011_BIRTH_DAY = "ER011_BIRTH_DAY";
+		
+		public static final String ER001_EMAIL = "ER001_EMAIL";
+		public static final String ER006_EMAIL = "ER006_EMAIL";
+		public static final String ER005_EMAIL = "ER005_EMAIL";
+		public static final String ER003_EMAIL = "ER003_EMAIL";
+		
+		public static final String ER001_TEL = "ER001_TEL";
+		public static final String ER006_TEL = "ER006_TEL";
+		public static final String ER005_TEL = "ER005_TEL";
+		
+		public static final String ER001_PASSWORD = "ER001_PASSWORD";
+		public static final String ER007_PASSWORD = "ER007_PASSWORD";
+		public static final String ER008_PASSWORD = "ER008_PASSWORD";
+		public static final String ER001_CONFIRM_PASSWORD = "ER001_CONFIRM_PASSWORD";
+		public static final String ER017_CONFIRM_PASSWORD = "ER017_CONFIRM_PASSWORD";
+
+		public static final String ER004_LEVEL_NAME = "ER004_LEVEL_NAME";
+		
+		
+
+		public static final String ER008 = "ER008";
+		public static final String ER009 = "ER009";
+		public static final String ER012 = "ER012";
+		public static final String ER013 = "ER013";
+		public static final String ER014 = "ER014";
+		public static final String ER015 = "ER015";
+		public static final String ER016 = "ER016";
+		public static final String ER017 = "ER017";
+		public static final String ER018 = "ER018";
+		public static final String ER019 = "ER019";
+		public static final String ER020 = "ER020";
+		public static final String ER021 = "ER021";
+		public static final String MSG001 = "MSG001";
+		public static final String MSG002 = "MSG002";
+		public static final String MSG003 = "MSG003";
+		public static final String MSG004 = "MSG004";
+		public static final String MSG005 = "MSG005";
 
 		public static final int YEAR_BEGINING = 2000;
 
 		public static final int YEAR_END = Common.getYearNow();
 
 		public static final int YEAR_ENDDATE = Common.getYearNow()+1;
+
+		public static final String N0 = "N0";
+
+		
 	}

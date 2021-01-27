@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="ValidateUserAction" extends="application-default" namespace="">
+
+
+<action name="validateUser_*" class="manageuser.action.ValidateUserAction"
+			method="execute">
+
+			<result name="input">/Views/jsp/ADM003.jsp</result>
+			<result name="success">Views/jsp/ADM004.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -8,7 +8,12 @@ package manageuser.action;
 
 
 
+import java.sql.SQLException;
+
 import com.opensymphony.xwork2.ActionSupport;
+
+import manageuser.common.Common;
+import manageuser.validate.GeneralValidate;
 
 
 
@@ -21,21 +26,18 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class AddUserAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
-	private int groupId;
+	GeneralValidate val = new GeneralValidate();
+	Common common = new Common();
 
 	public String execute() {
-		
 
-		
-		System.out.println("Quang");
+		try {
+			common.setDataLogic();
+		} catch (ClassNotFoundException |SQLException e) {
+			
+		}
 		return SUCCESS;
 	}
 	
-	public int getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
-	}
+	
 }

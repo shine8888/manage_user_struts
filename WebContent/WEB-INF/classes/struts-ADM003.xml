@@ -10,11 +10,7 @@
 			method="execute">
 
 			<result name="success" type="redirect">Views/jsp/ADM003.jsp</result>
-		</action>
-		
-		<action name="Logout" class="manageuser.action.LogoutAction"
-			method="execute">
-			<result name="success">/Views/jsp/ADM001.jsp</result>
+			<result name="input" type="redirect">Views/jsp/ADM003.jsp</result>
 		</action>
 		
 	</package>
