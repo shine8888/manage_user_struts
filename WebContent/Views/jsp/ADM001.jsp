@@ -22,7 +22,7 @@
 					<th colspan="2" align="left"><s:text name="ADM001.header" /></th>
 				</tr>
 
-				<td class="errorDiv" colspan="2"><s:actionerror
+				<td class="errMsg" colspan="2"><s:actionerror
 						style="list-style: none;" /> &nbsp;</td>
 						
 				<tr align="left">

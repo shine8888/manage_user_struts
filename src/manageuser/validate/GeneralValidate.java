@@ -19,8 +19,8 @@ import manageuser.logics.MstJapanLogic;
 import manageuser.logics.TblUserLogic;
 
 public class GeneralValidate {
-	public List<String> validateUser(UserInforBean user) {
-		System.out.println(user.getGroupName()+user.getGroupId());
+	public List<String> validateUser(UserInforBean user, int userId) {
+		System.out.println(user.getGroupName() + user.getGroupId());
 		List<String> listError = new ArrayList<String>();
 		// Khai báo List chứa các danh sách lỗi
 		List<String> listErrorLoginName = new ArrayList<String>();
@@ -30,8 +30,16 @@ public class GeneralValidate {
 		List<String> listErrorConfirmPassword = new ArrayList<String>();
 		List<String> listErrorFullNameKana = new ArrayList<String>();
 		try {
-			// Khai báo List chứa các danh sách lỗi
 
+			if (userId == 0) {
+				// Khai báo List chứa các danh sách lỗi
+				listErrorLoginName = validateLogin(user.getLoginName(), user.getUserId());
+				// Khai báo List chứa các danh sách lỗi
+				listErrorPassword = validatePassword(user.getPassword());
+				// Khai báo List chứa các danh sách lỗi
+				listErrorConfirmPassword = validateConfirmPassword(user.getPassword(), user.getConfirmPassword());
+			}
+			// Khai báo List chứa các danh sách lỗi
 			List<String> listErrorEmail = validateEmail(user.getEmail(), user.getUserId());
 			// Khai báo List chứa các danh sách lỗi
 			List<String> listErrorGroupName = validateGroupName(user.getGroupName());
@@ -42,7 +50,7 @@ public class GeneralValidate {
 				listErrorFullNameKana = validateFullNameKana(user.getFullNameKana());
 			}
 			// Khai báo List chứa các danh sách lỗi
-//			List<String> listErrorBirthday = validateBirthday(user.getListTime().get(0));
+			List<String> listErrorBirthday = validateBirthday(user.getListTime().get(0));
 			// Khai báo List chứa các danh sách lỗi
 			List<String> listErrorTel = validateTel(user.getTel());
 
@@ -51,8 +59,8 @@ public class GeneralValidate {
 			List<String> listErrorStartDate = new ArrayList<String>();
 			List<String> listErrorEndDate = new ArrayList<String>();
 			List<String> listErrorTotal = new ArrayList<String>();
-			System.out.println(user.getGroupName()+user.getGroupId());
-			if (user.getCodeLevel() != null) {
+			System.out.println(user.getCodeLevel() + user.getNameLevel()+"QQQ");
+			if (!"N0".equals(user.getCodeLevel())) {
 				// Khai báo List chứa các danh sách lỗi
 				listErrorCodeLevel = validateJapaneseLevel(user.getCodeLevel());
 				// Khai báo List chứa các danh sách lỗi
@@ -62,7 +70,7 @@ public class GeneralValidate {
 				// Khai báo List chứa các danh sách lỗi
 				listErrorTotal = validateTotal(user.getScore());
 			} else {
-				if (user.getScore()!=null) {
+				if (user.getScore() != null && !"".equals(user.getScore())) {
 					listErrorCodeLevel = validateJapaneseLevel(user.getCodeLevel());
 					// Khai báo List chứa các danh sách lỗi
 					listErrorStartDate = validateStartingDateLevel(user.getListTime().get(1));
@@ -88,9 +96,9 @@ public class GeneralValidate {
 			if (!listErrorFullNameKana.isEmpty()) {
 				listError.add(listErrorFullNameKana.get(0));
 			}
-//			if (!listErrorBirthday.isEmpty()) {
-//				listError.add(listErrorBirthday.get(0));
-//			}
+			if (!listErrorBirthday.isEmpty()) {
+				listError.add(listErrorBirthday.get(0));
+			}
 			if (!listErrorEmail.isEmpty()) {
 				listError.add(listErrorEmail.get(0));
 			}
@@ -378,6 +386,7 @@ public class GeneralValidate {
 		// Dùng vòng lặp for để thêm name vào list
 		for (int i = 0; i < listMstJapan.size(); i++) {
 			listName.add(listMstJapan.get(i).getCodeLevel());
+			System.out.println(listMstJapan.get(i).getCodeLevel());
 		}
 		// Kiểm tra xem listName có chứa tên truyền vào hay không
 		if (!listName.contains(text)) {
@@ -717,7 +726,7 @@ public class GeneralValidate {
 	public static void main(String[] args) {
 
 		try {
-			List<String> list = validateEmail(null, 0);
+			List<String> list = validateJapaneseLevel("N1");
 			for (String string : list) {
 				System.out.println(string);
 			}

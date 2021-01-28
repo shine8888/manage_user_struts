@@ -287,4 +287,55 @@ public class TblUserDao extends BaseDao{
 		}
 	}
 
+	
+	public int insertUser(TblUserBean user) throws ClassNotFoundException, SQLException {
+		// Khởi tạo giá trị id
+		int id = 0;
+		// Mở bắt lỗi
+		try {
+			// Kiểm tra xem kết nối có tồn tại hay không
+			if (conn != null) {
+				// Tạo mảng chứa tên cột là user_id của bảng Tbl_User
+				String columnNames[] = new String[] { "user_id" };
+				// Khởi tạo câu sql
+				StringBuilder sql = new StringBuilder();
+				// Gán các giá trị cho câu sql
+				sql.append("Insert IGNORE Into Tbl_user(group_id, login_name, pass, full_name, ");
+				sql.append("full_name_kana, email, tel, birthday, rule, salt)");
+				sql.append(" values(?,?,?,?,?,?,?,?,?,?);");
+				// Khởi tạo câu lệnh PreparedStatement
+				PreparedStatement pre = conn.prepareStatement(sql.toString(), columnNames);
+				// Khởi tạo index giá trị bằng 1
+				int index = 1;
+				// Truyền các giá trị vào câu lệnh preparedStatement để thực hiện truy vấn
+				pre.setInt(index++, user.getGroupId());
+				pre.setString(index++, user.getLoginName());
+				pre.setString(index++, user.getPassword());
+				pre.setString(index++, user.getFullName());
+				pre.setString(index++, user.getFullNameKana());
+				pre.setString(index++, user.getEmail());
+				pre.setString(index++, user.getTel());
+				pre.setDate(index++, (Date) user.getBirthday());
+				pre.setInt(index++, user.getRule());
+				pre.setString(index++, user.getSalt());
+				// Kiểm tra sau khi thực hiện câu truy vấn
+				pre.execute();
+				ResultSet rs = pre.getGeneratedKeys();
+				if (rs.next()) {
+					id = rs.getInt(1);
+				}
+			}
+			// Mở bắt lỗi
+		} catch (Exception e) {
+			// Thông báo lỗi
+			String methodName = new Object() {
+			}.getClass().getEnclosingMethod().getName();
+			String className = this.getClass().getName();
+			System.out.println(className + ". " + methodName + ". Error : " + e.getMessage());
+			// Ném lỗi
+			throw e;
+		}
+		// Trả về giá trị cho phương thức
+		return id;
+	}
 }

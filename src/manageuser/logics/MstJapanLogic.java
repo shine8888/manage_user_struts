@@ -3,6 +3,7 @@ package manageuser.logics;
 import java.sql.SQLException;
 import java.util.List;
 
+import manageuser.beans.MstGroupBean;
 import manageuser.beans.MstJapanBean;
 import manageuser.dao.MstJapanDao;
 
@@ -22,5 +23,15 @@ public class MstJapanLogic {
 		return listJapan;
 	}
 	
+	public String getNameLevel(String codeLevel) {
+		String nameLevel = "";
+			List<MstJapanBean> list = getAllMstJapan();
+			for (MstJapanBean mstJapanBean : list) {
+				if(codeLevel.equals(mstJapanBean.getCodeLevel())) {
+					nameLevel = mstJapanBean.getNameLevel();
+				}
+			}
+			return nameLevel;
+	}
 	
 }

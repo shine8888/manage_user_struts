@@ -8,9 +8,10 @@
 
 			<action name="AddUser" class="manageuser.action.AddUserAction"
 			method="execute">
-
+			<interceptor-ref name="loginStack" />
 			<result name="success" type="redirect">Views/jsp/ADM003.jsp</result>
 			<result name="input" type="redirect">Views/jsp/ADM003.jsp</result>
+			<result name="login">Views/jsp/ADM001.jsp</result>
 		</action>
 		
 	</package>

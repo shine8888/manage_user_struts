@@ -11,6 +11,7 @@
 	<include file="struts-ADM002.xml"></include>
 	<include file="struts-ADM003.xml"></include>
 	<include file="struts-ValidateUser.xml"></include>
+	<include file="struts-InsertUser.xml"></include>
 	
 	<package name="application-default" namespace=""
 		extends="struts-default" abstract="true">
@@ -19,7 +20,7 @@
 			<interceptor class="manageuser.interceptors.LoginInterceptor"
 				name="loginInterceptor" />
 			<interceptor-stack name="loginStack">
-				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="loginInterceptor"/>
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import manageuser.beans.UserInforBean;
 import manageuser.common.Common;
 import manageuser.validate.GeneralValidate;
 
@@ -28,6 +29,7 @@ public class AddUserAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	GeneralValidate val = new GeneralValidate();
 	Common common = new Common();
+	private UserInforBean userInfor;
 
 	public String execute() {
 
@@ -37,6 +39,14 @@ public class AddUserAction extends ActionSupport {
 			
 		}
 		return SUCCESS;
+	}
+	
+	public UserInforBean getUserInfor() {
+		return userInfor;
+	}
+
+	public void setUserInfor(UserInforBean userInfor) {
+		this.userInfor = userInfor;
 	}
 	
 	

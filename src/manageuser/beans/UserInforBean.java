@@ -1,5 +1,6 @@
 package manageuser.beans;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserInforBean {
@@ -22,14 +23,16 @@ public class UserInforBean {
 	private String codeLevel;
 	private List<String> listTime;
 	private String confirmPassword;
-	private List<Integer> listBirthday;
-	private List<Integer> listStartDate;
-	private List<Integer> listEndDate;
+
+
+	private List<Date> listDate;
 	private String score;
 	private int detailUserJapanId;
 	private String year, month, day;
 	private String yearStart, monthStart, dayStart;
 	private String yearEnd, monthEnd, dayEnd;
+
+
 	public String getYearStart() {
 		return yearStart;
 	}
@@ -123,29 +126,6 @@ public class UserInforBean {
 		this.score = score;
 	}
 
-	public List<Integer> getListBirthday() {
-		return listBirthday;
-	}
-
-	public void setListBirthday(List<Integer> listBirthday) {
-		this.listBirthday = listBirthday;
-	}
-
-	public List<Integer> getListStartDate() {
-		return listStartDate;
-	}
-
-	public void setListStartDate(List<Integer> listStartDate) {
-		this.listStartDate = listStartDate;
-	}
-
-	public List<Integer> getListEndDate() {
-		return listEndDate;
-	}
-
-	public void setListEndDate(List<Integer> listEndDate) {
-		this.listEndDate = listEndDate;
-	}
 
 	public String getConfirmPassword() {
 		return confirmPassword;
@@ -292,9 +272,11 @@ public class UserInforBean {
 	public void setCodeLevel(String codeLevel) {
 		this.codeLevel = codeLevel;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Date> getListDate() {
+		return listDate;
 	}
 
+	public void setListDate(List<Date> listDate) {
+		this.listDate = listDate;
+	}
 }
